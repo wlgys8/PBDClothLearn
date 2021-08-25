@@ -62,14 +62,14 @@ namespace PBDLearn
 
         public override void FillColliderDesc(CollidersGroup collidersGroup)
         {
+            RigidbodyDesc rigidbodyDesc = default(RigidbodyDesc);
             float mass = 0;
             if(_rigidbody && !_rigidbody.isKinematic){
                 mass = _rigidbody.mass;
+                rigidbodyDesc.mass = _rigidbody.mass;
+                rigidbodyDesc.velocity = _rigidbody.velocity;
             }
-            collidersGroup.AddCapsule(this.desc,new RigidbodyDesc(){
-                mass = mass,
-                bounciness = bounciness
-            },this.entityId);
+            collidersGroup.AddCapsule(this.desc,rigidbodyDesc,this.entityId);
         }
 
     }
