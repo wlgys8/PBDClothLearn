@@ -1,0 +1,8 @@
+.DS_Store
+Temp
+Library
+.vscode
+*.csproj
+Logs
+obj
+*.sln
