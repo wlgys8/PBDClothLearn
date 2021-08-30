@@ -600,17 +600,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7066c7ec5cdc463b8513ef67def6d8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dt: 0.005
   windZone: {fileID: 413585849}
   colliderProxies:
   - {fileID: 1406637543}
   - {fileID: 270035083}
   - {fileID: 858160666}
   setting:
-    _density: 0.1
+    _density: 0.2
     _constraintSolverIteratorCount: 4
-    _compressStiffness: 0.9
-    _stretchStiffness: 0.897
-    _bendStiffness: 0.071
+    _compressStiffness: 1
+    _stretchStiffness: 1
+    _bendStiffness: 0.2
     _damper: 0.1
   drawGizmos: 1
 --- !u!23 &886980076

@@ -8,6 +8,8 @@ namespace PBDLearn
 {
     public class ClothRenderer : MonoBehaviour
     {
+        [Range(0.005f,0.02f)]
+        public float dt = 0.01f;
         public WindZone windZone;
         private ClothSimulator _simulator;
 
@@ -57,6 +59,7 @@ namespace PBDLearn
              GetComponent<MeshRenderer>().sharedMaterial.DisableKeyword("_INPUT_WORLD_VERTEX");
         }
 
+        private float _elapsedTime = 0;
         void Update()
         {
             if(_simulator != null){
@@ -64,7 +67,15 @@ namespace PBDLearn
                     _simulator.AddPinConstraint(pair.Key,pair.Value.position);
                 }
                 _simulator.SetFieldForce(windZone.transform.forward * windZone.windMain);
-                _simulator.Step(Time.deltaTime);
+                _elapsedTime += Time.deltaTime;
+                int cnt = Mathf.FloorToInt(_elapsedTime / dt);
+                for(var i = 0; i < cnt; i ++){
+                    _simulator.Step(dt);
+                    if(i < cnt - 1){
+                        _simulator.ComputeAsyncJobs();
+                    }
+                }
+                _elapsedTime %= dt;
             }
         }
 
